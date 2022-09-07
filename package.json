@@ -1,0 +1,29 @@
+{
+    "name": "room_gap",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "dev": "cross-env NODE_ENV=development nodemon app.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "auto-bind": "^4.0.0",
+        "cookie-parser": "^1.4.6",
+        "dotenv": "^16.0.1",
+        "ejs": "^3.1.8",
+        "express": "^4.17.1",
+        "express-ejs-layouts": "^2.5.1",
+        "helmet": "^6.0.0",
+        "morgan": "^1.10.0",
+        "simple-peer": "^9.11.1",
+        "socket.io": "^4.5.0",
+        "socket.io-redis": "^6.1.1"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.3"
+    }
+}
