@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=300px height=280px src="https://cdn.iconscout.com/icon/free/png-256/video-call-3225767-2690240.png" alt="Project logo"></a>
+ <img width=200px height=180px src="https://cdn.iconscout.com/icon/free/png-256/video-call-3225767-2690240.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">RoomGap</h3>
@@ -8,8 +8,8 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/mamalli11/BourseBot/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/mamalli11/BourseBot/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/mamalli11/RoomGap/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/mamalli11/RoomGap/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -89,4 +89,4 @@ npm run dev
 
 - [@mamalli11](https://github.com/mamalli11) - Idea & Initial work
 
-فهرست [مشارکت کنندگان](https://github.com/mamalli11/BourseBot/graphs/contributors) که در این پروژه شرکت کردند را نیز ببینید.
+فهرست [مشارکت کنندگان](https://github.com/mamalli11/RoomGap/network/members) که در این پروژه شرکت کردند را نیز ببینید.
