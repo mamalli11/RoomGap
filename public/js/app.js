@@ -1,6 +1,6 @@
 /*
 Author       : Dreamguys
-×îÐÂ×îÈ«×îºÃµÄBootstrapÄ£°å£ºhttp://www.bootstrapmb.com
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½Ãµï¿½BootstrapÄ£ï¿½å£ºhttp://www.bootstrapmb.com
 Version      : 1.0
 */
 $(document).ready(function($) {
@@ -59,7 +59,6 @@ $(document).ready(function($) {
 	// Chat sidebar overlay
 	$(document).on('click', '#task_chat', function() {
 		var $target = $($(this).attr('href'));
-		console.log($target);
 		sidebar_overlay($target);
 		return false;
 	});
@@ -175,9 +174,9 @@ $(document).ready(function($) {
 	}
 	
 	// Incoming call popup
-	if($('#incoming_call').length > 0) {
-		$('#incoming_call').modal('show');
-	}
+	// if($('#incoming_call').length > 0) {
+	// 	$('#incoming_call').modal('show');
+	// }
 	
 	// Summernote
 	if($('.summernote').length > 0) {

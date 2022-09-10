@@ -47,9 +47,9 @@ module.exports = class Application {
     });
   }
   initTemplateEngine() {
-    this.#app.use(ExpressEjsLayouts);
     this.#app.set("view engine", "ejs");
-    this.#app.set("views", "views");
+    this.#app.set("Views", "views");
+    this.#app.use(ExpressEjsLayouts);
     this.#app.set("layout", "./layouts/master");
 
   }
