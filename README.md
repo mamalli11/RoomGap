@@ -4,13 +4,12 @@
 </p>
 
 <h3 align="center">RoomGap</h3>
+<br> 
 
 <div align="center">
 
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/mamalli11/RoomGap/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/mamalli11/RoomGap/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+![Downloads](https://img.shields.io/github/downloads/mamalli11/RoomGap/total) ![Contributors](https://img.shields.io/github/contributors/mamalli11/RoomGap?color=dark-green) ![Forks](https://img.shields.io/github/forks/mamalli11/RoomGap?style=social) ![Stargazers](https://img.shields.io/github/stars/mamalli11/RoomGap?style=social) ![Issues](https://img.shields.io/github/issues/mamalli11/RoomGap) ![License](https://img.shields.io/github/license/mamalli11/RoomGap) 
+
 
 </div>
 

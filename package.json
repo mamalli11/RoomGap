@@ -1,14 +1,19 @@
 {
     "name": "room_gap",
     "version": "1.0.0",
-    "description": "",
+    "description": "RoomGap is a video communication service",
     "main": "app.js",
+    "homepage": "https://github.com/mamalli11/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mamalli11/RoomGap"
+    },
     "scripts": {
         "start": "node app.js",
         "dev": "cross-env NODE_ENV=development nodemon app.js"
     },
     "keywords": [],
-    "author": "",
+    "author": "Mohammad Javad Majidi",
     "license": "ISC",
     "dependencies": {
         "auto-bind": "^4.0.0",
