@@ -12,7 +12,7 @@ module.exports = class NamespaceSocketHandler {
             );
 
             if (!socketExist) {
-                activeUsers.push({ socketId: socket.id, username: 'null' });
+                activeUsers.push({ socketId: socket.id, username: 'null', status: 'online' });
 
                 socket.emit("update-user-list", {
                     users: activeUsers.filter(
@@ -27,14 +27,12 @@ module.exports = class NamespaceSocketHandler {
                 activeUsers.find((sid) => {
                     sid.socketId == socket.id ? sid.username = data : null
                 })
-                console.log(activeUsers);
-                socket.broadcast.emit("update-user-list", { users: [{ socketId: socket.id, username: data }] });
-
+                socket.broadcast.emit("update-user-list", { users: [{ socketId: socket.id, username: data, status: 'online' }] });
             });
 
             socket.on("call-user", (data) => {
                 socket.to(data.to).emit("call-made", {
-                    username : activeUsers.find((sid) => sid.socketId === socket.id),
+                    username: activeUsers.find((sid) => sid.socketId === socket.id),
                     offer: data.offer,
                     socket: socket.id,
                 });
@@ -44,6 +42,7 @@ module.exports = class NamespaceSocketHandler {
                 socket.to(data.to).emit("answer-made", {
                     socket: socket.id,
                     answer: data.answer,
+                    username: activeUsers.find((uname) => uname.socketId === socket.id)
                 });
             });
 
