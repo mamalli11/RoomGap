@@ -5,19 +5,19 @@
                 <img src="img/logo.png" width="35" height="35" alt=""> <span>Room Gap</span>
             </a>
         </div>
-        <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
         <ul class="nav user-menu float-right">
-
             <li class="nav-item dropdown has-arrow">
                 <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                     <span class="user-img"><img class="rounded-circle" src="img/user.jpg" width="40" alt="Admin">
                         <span class="status online"></span></span>
-                    <span id="name"><%= username %></span>
+                    <span id="name">
+                        <%= username %>
+                    </span>
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="profile.html">My Profile</a>
                     <a class="dropdown-item" href="settings.html">Settings</a>
-                    <a class="dropdown-item" href="login.html">Logout</a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
                 </div>
             </li>
         </ul>
@@ -27,7 +27,7 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="profile.html">My Profile</a>
                 <a class="dropdown-item" href="settings.html">Settings</a>
-                <a class="dropdown-item" href="login.html">Logout</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
             </div>
         </div>
     </div>
@@ -41,12 +41,12 @@
                             <div class="navbar">
                                 <div class="user-details mr-auto">
                                     <div class="float-left user-img m-r-10">
-                                        <a href="#" title="Mike Litorus"><img src="img/user.jpg" alt=""
+                                        <a href="#" title="undefined"><img src="img/user.jpg" alt=""
                                                 class="w-40 rounded-circle"><span class="status online"></span></a>
                                     </div>
                                     <div class="user-info float-left">
-                                        <a href="#" title="Mike Litorus">
-                                            <span class="font-bold" id="NameContact">Mike Litorus</span>
+                                        <a href="#" title="undefined">
+                                            <span class="font-bold" id="NameContact">Please select a user to call</span>
                                         </a>
                                         <span class="last-seen">Online</span>
                                     </div>
@@ -55,13 +55,6 @@
                                     <li class="nav-item">
                                         <a class="task-chat profile-rightbar float-right" href="#chat_sidebar"
                                             id="task_chat"><i aria-hidden="true" class="fa fa-comments"></i></a>
-                                    </li>
-                                    <li class="nav-item dropdown dropdown-action">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
-                                            aria-expanded="false"><i class="fa fa-cog"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="javascript:void(0)" class="dropdown-item">Settings</a>
-                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -73,7 +66,8 @@
                                 </div>
                                 <div class="my-video">
                                     <ul>
-                                        <li style="  border: 1px solid; padding: 10px; box-shadow: 5px 6px 5px 0px #888888;border-radius: 4px;">
+                                        <li
+                                            style="border: 1px solid; padding: 10px; box-shadow: 5px 6px 5px 0px #888888;border-radius: 4px;">
                                             <video autoplay muted id="local-video" class="img-fluid"></video>
                                         </li>
                                     </ul>
@@ -82,7 +76,9 @@
                         </div>
                         <div class="chat-footer">
                             <div class="call-icons">
-                                <span class="call-duration">00:59</span>
+                                <span class="call-duration">
+                                    <label id="minutes">00</label>:<label id="seconds">00</label>
+                                </span>
                                 <ul class="call-items">
                                     <li class="call-item">
                                         <a href="" title="Enable Video" data-placement="top" data-toggle="tooltip">
@@ -94,12 +90,12 @@
                                             <i class="fa fa-microphone microphone"></i>
                                         </a>
                                     </li>
-                                    <li class="call-item">
+                                    <!-- <li class="call-item">
                                         <a href="" title="Add User" data-placement="top" data-toggle="tooltip">
                                             <i class="fa fa-user-plus"></i>
                                         </a>
-                                    </li>
-                                    <li class="call-item">
+                                    </li> -->
+                                    <li class="call-item" onclick="fullscreen(event)">
                                         <a href="" title="Full Screen" data-placement="top" data-toggle="tooltip">
                                             <i class="fa fa-arrows-v full-screen"></i>
                                         </a>
@@ -137,6 +133,27 @@
                 </div>
             </div>
         </div>
-    
     </div>
 </div>
+<div id="incoming_call" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="profile-widget">
+                    <div class="profile-img">
+                        <a href="#" class="avatar"><img src="img/user.jpg" alt=""></a>
+                    </div>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a>Tressa Wexler</a>
+                    </h4>
+                    <div class="small text-muted">calling ...</div>
+                    <div class="incoming-btns">
+                        <a href="#" class="btn btn-danger m-r-10" id="decline">Decline</a>
+                        <a href="#" class="btn btn-success" id="answer">Answer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/index.js"></script>
