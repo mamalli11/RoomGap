@@ -1,13 +1,14 @@
+const router = require("express").Router();
+
 const homecontroller = require("../controllers/homecontroller");
 const { LoginController } = require("../controllers/logincontroller");
 
-const router = require("express").Router();
+router.get("/", homecontroller.indexPage);
 
-router.get("/", homecontroller.indexPage)
+router.get("/login", LoginController.LoginPage);
 
-router.get("/login", LoginController.LoginPage)
-router.post("/login", LoginController.handleLogin)
+router.post("/login", LoginController.handleLogin);
 
-module.exports = {
-    AllRoutes: router
-}
+router.get("/logout", LoginController.handleLogout);
+
+module.exports = { AllRoutes: router }

@@ -4,21 +4,28 @@ class LoginController extends Controller {
     async LoginPage(req, res, next) {
         try {
             res.render("login", {
-                pageTitle: "login",
-                layout: "./layouts/loginLayout",
-                path: "/login"
+                pageTitle: "Login",
+                path: "/login",
             });
         } catch (error) {
             next(error);
         }
     }
-    async handleLogin(req, res, next) {
+    handleLogin(req, res, next) {
         try {
 
             res.cookie('roomGap', req.body.username, { maxAge: 86400000 });
 
             res.redirect("/");
 
+        } catch (error) {
+            next(error);
+        }
+    }
+    handleLogout(req, res, next) {
+        try {
+            res.clearCookie("roomGap");
+            res.redirect("/login");
         } catch (error) {
             next(error);
         }

@@ -8,8 +8,8 @@ module.exports = new (class HomeController extends Controller {
 
       res.render("index", {
         username: req.cookies.roomGap,
-        pageTitle: "وبلاگ",
-        path: "/"
+        pageTitle: "Home",
+        path: "/",
       });
     } catch (error) {
       next(error);

@@ -1,21 +1,24 @@
-<div class="container">
-    <div id="login-box">
-        <div class="logo">
-            <img src="../img/logo.png" width="100" height="100" class="img img-responsive img-circle center-block" />
-            <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
-        </div><!-- /.logo -->
-        <div class="controls">
-            <form action="/login" method="post">
-                <input type="text" name="username" placeholder="Username" class="form-control" />
-                <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
-            </form>
+<div class="main-wrapper account-wrapper">
+    <div class="account-page">
+        <div class="account-center">
+            <div class="account-box">
+                <form action="/login" class="form-signin" method="post">
+                    <div class="account-logo">
+                        <a href="/">
+                            <img src="/img/logo.svg" alt="logo" style="    background-color: #009efb;">
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" autofocus="" class="form-control" placeholder="Please enter your username" name="username">
+                    </div>
+                   
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary account-btn">Login</button>
+                    </div>
+          
+                </form>
+            </div>
         </div>
     </div>
 </div>
-<div id="particles-js"></div>
-
-<!-- partial -->
-<script src='bootstrap.min.css'></script>
-<script src='jquery-1.11.1.min.js'></script>
-<!-- <script src='js/jquery-3.2.1.min.js'></script> -->
-<script src="script.js"></script>
