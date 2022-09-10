@@ -1,7 +1,7 @@
-const socket = io("192.168.1.8:9000");
+const socket = io("192.168.1.8:3000");
 
 let isAlreadyCalling = false;
-let getCalled = false;
+let getCalled = true;
 
 const { RTCPeerConnection, RTCSessionDescription } = window;
 
@@ -12,12 +12,12 @@ let userAgent = navigator.userAgent;
 if (userAgent.match(/firefox|fxios/i)) {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true, })
         .then((stream) => { startlocalCamera(stream) })
-        .catch((err) => { console.log(err) });
+        .catch((error) => { console.log(error) });
 
 } else if (userAgent.match(/chrome|chromium|crios/i)) {
     navigator.getUserMedia({ video: true, audio: true },
         (stream) => { startlocalCamera(stream) },
-        (error) => { console.log(err) });
+        (error) => { console.log(error) });
 }
 
 function startlocalCamera(stream) {
@@ -50,7 +50,7 @@ function createUserItems(user) {
                 <span>
                     <span class="chat-avatar-sm user-img">
                         <img src="img/user.jpg" alt="" class="rounded-circle">
-                        <span class="status online"></span>
+                        <span class="status ${user.status}"></span>
                     </span> <h4>${user.username}</h4> 
                 </span>
             </div>
@@ -61,18 +61,11 @@ function createUserItems(user) {
 
     document.getElementById(user.socketId).addEventListener("click", (env) => {
         unselectUser();
-        document.getElementById('NameContact').innerText = env.value;
-
-        // userContainer.setAttribute(
-        //     "class",
-        //     "active-user active-user--selected",
-        // );
-        // userContainer.setAttribute("style", "pointer-events: none;")
-        console.log(env);
-        // const talkingWithInfo = document.getElementById("talking-with-info");
-        // talkingWithInfo.innerHTML = `صحبت با : سوکت ${socketId}`;
         callUser(user.socketId);
-    });
+        // elm.setAttribute("class", "active");
+        // elm.setAttribute("style", "pointer-events: none;");
+    })
+
 }
 
 function unselectUser() {
@@ -100,6 +93,25 @@ function updateUserList(users) {
     });
 }
 
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+
+function setTime() {
+    ++totalSeconds;
+    secondsLabel.innerHTML = pad(totalSeconds % 60);
+    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+    var valString = val + "";
+    if (valString.length < 2) {
+        return "0" + valString;
+    } else {
+        return valString;
+    }
+}
+
 socket.emit('SetUsername', document.cookie.split('=')[1])
 
 socket.on("update-user-list", ({ users }) => {
@@ -116,43 +128,59 @@ socket.on("remove-user", ({ socketId }) => {
 
 socket.on("call-made", async (data) => {
     if (getCalled) {
-        const confirmed = confirm(
-            `کاربر با شناسه ${data.socket} می خواهد با شما تماس بگیرد . قبول می نماِیید؟`
-        );
 
-        if (!confirmed) {
-            socket.emit("reject-call", {
-                from: data.socket,
-            });
-
-            return;
+        // Incoming call popup
+        if ($('#incoming_call').length > 0) {
+            $('#incoming_call').modal('show');
         }
-        document.getElementById('NameContact').innerText = data.username.username;
+
+        window.onclick = async function (event) {
+            if (event.target.id == 'decline') {
+                socket.emit("reject-call", {
+                    from: data.socket,
+                });
+
+                $('#incoming_call').modal('hide');
+
+                return;
+            }
+            else if (event.target.id == 'answer') {
+                await peerConnection.setRemoteDescription(
+                    new RTCSessionDescription(data.offer)
+                );
+
+                const answer = await peerConnection.createAnswer();
+
+                await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
+
+                document.getElementById('NameContact').innerText = data.username.username;
+
+                $('#incoming_call').modal('hide');
+
+                setInterval(setTime, 1000);
+
+                socket.emit("make-answer", {
+                    answer,
+                    to: data.socket,
+                });
+            }
+
+        }
+
     }
 
 
-    await peerConnection.setRemoteDescription(
-        new RTCSessionDescription(data.offer)
-    );
-
-    const answer = await peerConnection.createAnswer();
-
-    await peerConnection.setLocalDescription(new RTCSessionDescription(answer));
-
-    socket.emit("make-answer", {
-        answer,
-        to: data.socket,
-    });
-
-    getCalled = true;
+    getCalled = false;
 });
 
 socket.on("answer-made", async (data) => {
 
-
     await peerConnection.setRemoteDescription(
         new RTCSessionDescription(data.answer)
     );
+
+    document.getElementById('NameContact').innerText = data.username.username;
+    setInterval(setTime, 1000);
 
     if (!isAlreadyCalling) {
         callUser(data.socket);
@@ -174,3 +202,18 @@ peerConnection.ontrack = function ({ streams: [stream] }) {
 };
 
 
+function fullscreen(event) {
+    event.preventDefault();
+    var element = document.querySelector(".chat-view");
+
+    if (document.fullscreenElement !== null) {
+        document.exitFullscreen()
+            .then(() => { fullsc = false; })
+            .catch((error) => { console.log(error.message); });
+    } else {
+        element.requestFullscreen()
+            .then(() => { fullsc = true; })
+            .catch((error) => { console.log(error.message); });
+
+    }
+}
