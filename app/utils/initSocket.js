@@ -6,7 +6,8 @@ const client = createClient();
 
 client.on('error', (err) => console.log('Redis Client Error', err));
 
-client.connect({ url: "redis://127.0.0.1:6379" });
+// client.connect({ url: "redis://127.0.0.1:6379" });
+client.connect({ url: "redis://:Zb5FuFXrbCfEjfTU3KWaMjWz@roomgapredis:6379/0" });
 const subClient = client.duplicate();
 
 function initialSocket(httpServer) {
@@ -21,10 +22,10 @@ function initialSocket(httpServer) {
     io.adapter(adapter)
 
     client.on("error", (err) => {
-        debug(`REDIS ADAPTOR DISCONNECTED ON pubClient %O`, err)
+        console.log(`REDIS ADAPTOR DISCONNECTED ON pubClient %O`, err)
     })
     subClient.on("error", (err) => {
-        debug(`REDIS ADAPTOR DISCONNECTED ON subClient %O`, err)
+        console.log(`REDIS ADAPTOR DISCONNECTED ON subClient %O`, err)
     })
 
     return io
