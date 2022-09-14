@@ -1,4 +1,4 @@
-const socket = io("https://roomgap.iran.liara.run");
+const socket = io("/");
 
 socket.on('update', data => console.log(data))
 socket.on('connect_error', err => console.log(err))
