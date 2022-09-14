@@ -1,7 +1,13 @@
 const socket = io("192.168.1.8:3000");
 
+socket.on('update', data => console.log(data))
+socket.on('connect_error', err => console.log(err))
+socket.on('connect_failed', err => console.log(err))
+socket.on('disconnect', err => console.log(err))
+
 let isAlreadyCalling = false;
 let getCalled = true;
+let myStream;
 
 const { RTCPeerConnection, RTCSessionDescription } = window;
 
@@ -22,6 +28,7 @@ if (userAgent.match(/firefox|fxios/i)) {
 
 function startlocalCamera(stream) {
     const localVideo = document.getElementById("local-video");
+    myStream = stream;
 
     if (localVideo) {
         localVideo.srcObject = stream;
@@ -217,3 +224,13 @@ function fullscreen(event) {
 
     }
 }
+
+function toggleVideo(event) {
+    event.preventDefault();
+    myStream.getVideoTracks()[0].enabled = !(myStream.getVideoTracks()[0].enabled);
+}
+
+function toggleMic(event) {
+    event.preventDefault();
+    myStream.getAudioTracks()[0].enabled = !(myStream.getAudioTracks()[0].enabled);
+} 

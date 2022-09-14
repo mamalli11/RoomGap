@@ -1,5 +1,5 @@
 const socketIO = require("socket.io");
-const redis = require('socket.io-redis')
+const redis = require('socket.io-redis');
 
 function initialSocket(httpServer) {
     const io = socketIO(httpServer, {
