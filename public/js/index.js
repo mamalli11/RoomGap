@@ -138,7 +138,7 @@ socket.on("call-made", async (data) => {
 
         // Incoming call popup
         if ($('#incoming_call').length > 0) {
-            document.getElementById('nameCaller').innerHTML = document.cookie.split('=')[1]
+            document.getElementById('nameCaller').innerHTML = data.username.username;
             $('#incoming_call').modal('show');
         }
 
