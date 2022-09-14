@@ -2,24 +2,25 @@ const socketIO = require("socket.io");
 const { createClient } = require("redis");
 const { createAdapter } = require("@socket.io/redis-adapter");
 
-const client = createClient();
+const client = createClient({ url: "redis://:Zb5FuFXrbCfEjfTU3KWaMjWz@roomgapredis:6379/0" });
+// const client = createClient({ url: "redis://127.0.0.1:6379" });
 
 client.on('error', (err) => console.log('Redis Client Error', err));
 
 // client.connect({ url: "redis://127.0.0.1:6379" });
-client.connect({ url: "redis://:Zb5FuFXrbCfEjfTU3KWaMjWz@roomgapredis:6379/0" });
+client.connect();
+
 const subClient = client.duplicate();
 
 function initialSocket(httpServer) {
     const io = socketIO(httpServer, {
         cors: {
-            origin: "*"
+            origin: "https://roomgap.iran.liara.run"
         },
         maxHttpBufferSize: 1e8
     })
     // io.adapter(redis({ host: 'localhost', port: 6379 }));
-    const adapter = createAdapter(client, subClient);
-    io.adapter(adapter)
+    io.adapter(createAdapter(client, subClient));
 
     client.on("error", (err) => {
         console.log(`REDIS ADAPTOR DISCONNECTED ON pubClient %O`, err)
