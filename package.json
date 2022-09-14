@@ -16,6 +16,7 @@
     "author": "Mohammad Javad Majidi",
     "license": "ISC",
     "dependencies": {
+        "@socket.io/redis-adapter": "^7.2.0",
         "auto-bind": "^4.0.0",
         "cookie-parser": "^1.4.6",
         "dotenv": "^16.0.1",
@@ -24,9 +25,9 @@
         "express-ejs-layouts": "^2.5.1",
         "helmet": "^6.0.0",
         "morgan": "^1.10.0",
+        "redis": "^4.3.1",
         "simple-peer": "^9.11.1",
-        "socket.io": "^4.5.0",
-        "socket.io-redis": "^6.1.1"
+        "socket.io": "^4.5.0"
     },
     "devDependencies": {
         "cross-env": "^7.0.3"
