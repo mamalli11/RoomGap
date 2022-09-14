@@ -1,4 +1,4 @@
-const socket = io("192.168.1.8:3000");
+const socket = io("https://roomgap.iran.liara.run");
 
 socket.on('update', data => console.log(data))
 socket.on('connect_error', err => console.log(err))

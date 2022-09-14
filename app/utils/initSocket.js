@@ -8,7 +8,8 @@ const subClient = pubClient.duplicate();
 function initialSocket(httpServer) {
     const io = socketIO(httpServer, {
         cors: {
-            origin: "*"
+            // origin: "*"
+            origin: "https://roomgap.iran.liara.run"
         },
         maxHttpBufferSize: 1e8
     })
