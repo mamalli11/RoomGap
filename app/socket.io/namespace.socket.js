@@ -29,8 +29,11 @@ module.exports = class NamespaceSocketHandler {
                 })
                 socket.broadcast.emit("update-user-list", { users: [{ socketId: socket.id, username: data, status: 'online' }] });
             });
-
+            console.log(socket.handshake.address);
+            console.log(socket.request.connection.remoteAddress);
             socket.on("call-user", (data) => {
+                
+                console.log('******************* offer', data.offer);
                 socket.to(data.to).emit("call-made", {
                     username: activeUsers.find((sid) => sid.socketId === socket.id),
                     offer: data.offer,
